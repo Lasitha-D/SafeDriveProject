@@ -27,10 +27,10 @@
 
         <activity android:name=".VehicleType" />
         <activity android:name=".Comparission" />
-        <activity android:name=".AddTag">
+        <activity android:name=".AddNewTag">
 
         </activity>
-        <activity android:name=".TagInfo" />
+        <activity android:name=".ViewTagInfo" />
         <activity android:name=".MoreInformation" />
 
     </application>

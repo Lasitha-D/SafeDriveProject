@@ -43,22 +43,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TagDetails.TABLE_NAME, null, contentValues);
     }
 
-    public TagDetails viewTagDetails(SQLiteDatabase db) {
-
-        String[] projection = {TagDetails.TAG_ID, TagDetails.VEHICLE, TagDetails.SPEED_LIMIT};
-        Cursor cursor = db.query(TagDetails.TABLE_NAME, projection, null, null, null, null, null);
-
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        TagDetails tagDetails = new TagDetails(
-                cursor.getString(cursor.getColumnIndex(TagDetails.TAG_ID)),
-                cursor.getString(cursor.getColumnIndex(TagDetails.VEHICLE)),
-                cursor.getInt(cursor.getColumnIndex(TagDetails.SPEED_LIMIT)));
-
-        // close the db connection
-        cursor.close();
-        return tagDetails;
+    public Cursor viewTagDetails(SQLiteDatabase database){
+        String projection[] = {TagDetails.TAG_ID, TagDetails.VEHICLE, TagDetails.SPEED_LIMIT};
+        Cursor cursor = database.query(TagDetails.CREATE_TABLE, projection, null, null, null, null,
+                null);
+        return cursor;
     }
 
     public List<TagDetails> getAllNotes() {

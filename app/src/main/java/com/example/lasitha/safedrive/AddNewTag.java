@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import static com.example.lasitha.safedrive.R.id.add_tag_vehicle_type_val;
 
-public class AddTag extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddNewTag extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     //Define variables - Insert into database
     DatabaseHelper databaseHelper;
