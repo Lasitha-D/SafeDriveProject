@@ -11,15 +11,10 @@ public class TagDetails {
     public static final String SPEED_LIMIT = "speed_limit";
 
     //create table query
-    public static final String CREATE_TABLE =
-            "CREATE TABLE " + TABLE_NAME + "("
-                + TAG_ID + "TEXT PRIMARY KEY,"
-                + VEHICLE + " TEXT,"
-                + SPEED_LIMIT + " INTEGER"
-                + ")";
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + TAG_ID + "TEXT PRIMARY KEY, " + VEHICLE + "TEXT, "
+                        + SPEED_LIMIT + "INTEGER" + ")";
 
     public TagDetails(){
-
     }
 
     public TagDetails(String tag_id, String vehicle, int speed_limit){

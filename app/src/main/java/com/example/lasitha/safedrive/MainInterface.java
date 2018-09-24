@@ -9,6 +9,7 @@ import android.widget.Button;
 public class MainInterface extends AppCompatActivity {
 
     Button con_btn, more_info;
+    DatabaseHelper databaseHelper;
 
 
     @Override
@@ -16,6 +17,7 @@ public class MainInterface extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_interface);
 
+        databaseHelper = new DatabaseHelper(this);
 
         more_info = findViewById(R.id.more_information);
         con_btn =  findViewById(R.id.main_continue_button);
@@ -25,15 +27,14 @@ public class MainInterface extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainInterface.this,VehicleType.class);
                 startActivity(intent);
-//                finish();
             }
         });
 
         more_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(MainInterface.this,MoreInformation.class);
-                startActivity(in);
+                Intent intent = new Intent(MainInterface.this,MoreInformation.class);
+                startActivity(intent);
             }
         });
     }

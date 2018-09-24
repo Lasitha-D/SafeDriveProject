@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void insertNewTag(String id, String vehicle, int speed_limit){
+    /*public void insertNewTag(String id, String vehicle, int speed_limit){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -41,15 +41,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(TagDetails.SPEED_LIMIT, speed_limit);
 
         db.insert(TagDetails.TABLE_NAME, null, contentValues);
+    }*/
+
+    public void insertNewTag(String id, String vehicle, int speed_limit) {
+        // get writable database as we want to write data
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(TagDetails.TAG_ID, id);
+        values.put(TagDetails.VEHICLE, vehicle);
+        values.put(TagDetails.SPEED_LIMIT, speed_limit);
+
+
+        // insert row
+        db.insert(TagDetails.TABLE_NAME, null, values);
+
+        // close db connection
+        db.close();
+
+        // return newly inserted row id
     }
 
-    public Cursor viewTagDetails(SQLiteDatabase database){
-        String projection[] = {TagDetails.TAG_ID, TagDetails.VEHICLE, TagDetails.SPEED_LIMIT};
-        Cursor cursor = database.query(TagDetails.CREATE_TABLE, projection, null, null, null, null,
-                null);
+    public Cursor viewTagDetails() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select * from "+ TagDetails.TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
-
+/*
     public List<TagDetails> getAllNotes() {
         List<TagDetails> tagDetailsList = new ArrayList<>();
 
@@ -79,5 +100,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // return notes list
         return tagDetailsList;
     }
-
+*/
 }

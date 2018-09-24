@@ -20,7 +20,6 @@ public class AddNewTag extends AppCompatActivity implements AdapterView.OnItemSe
     DatabaseHelper databaseHelper;
     EditText tagId, speedLimit;
     Spinner vehicleTypeSpn;
-    Context context = this;
     SQLiteDatabase sqLiteDatabase;
 
     @Override
@@ -30,6 +29,7 @@ public class AddNewTag extends AppCompatActivity implements AdapterView.OnItemSe
 
         //Spinner (Dropdown) - Choose vehicle type
         vehicleTypeSpn = findViewById(add_tag_vehicle_type_val);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.vehicles, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vehicleTypeSpn.setAdapter(adapter);
@@ -38,6 +38,7 @@ public class AddNewTag extends AppCompatActivity implements AdapterView.OnItemSe
         //Casting editText variables - Insert into database
         tagId = findViewById(R.id.add_tag_id_val);
         speedLimit = findViewById(R.id.add_tag_speed_limit_val);
+        databaseHelper = new DatabaseHelper(this);
 
     }
 
@@ -46,18 +47,14 @@ public class AddNewTag extends AppCompatActivity implements AdapterView.OnItemSe
 
         String id = tagId.getText().toString();
         String vehicle = vehicleTypeSpn.getSelectedItem().toString();
-        int speedlimit = Integer.parseInt(speedLimit.getText().toString());
+        String val = speedLimit.getText().toString();
 
-        databaseHelper = new DatabaseHelper(context);
-
-        sqLiteDatabase = databaseHelper.getWritableDatabase();
-
-        databaseHelper.insertNewTag(id, vehicle, speedlimit);
-
-        if(id.isEmpty()){
-            Toast.makeText(getBaseContext(), "Fill all the fields", Toast.LENGTH_LONG).show();
+        if (val.equals("") || id.equals("")) {
+            Toast.makeText(this, "Not Saved", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getBaseContext(), "Saved Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Saved Successfully", Toast.LENGTH_SHORT).show();
+
+            databaseHelper.insertNewTag(id, vehicle, Integer.parseInt(val));
             clear(view);
         }
     }
