@@ -9,7 +9,7 @@ import android.widget.Button;
 public class MainInterface extends AppCompatActivity {
 
     Button con_btn, more_info;
-    DatabaseHelper databaseHelper;
+    //DatabaseHelper databaseHelper;
 
 
     @Override
@@ -17,7 +17,7 @@ public class MainInterface extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_interface);
 
-        databaseHelper = new DatabaseHelper(this);
+        //databaseHelper = new DatabaseHelper(this);
 
         more_info = findViewById(R.id.more_information);
         con_btn =  findViewById(R.id.main_continue_button);
